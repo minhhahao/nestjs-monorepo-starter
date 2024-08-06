@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app/nestjs-modules": [
+        "libs/nestjs-modules/src"
+      ],
+      "@app/nestjs-modules/*": [
+        "libs/nestjs-modules/src/*"
+      ],
+      "@app/utils": [
+        "libs/utils/src"
+      ],
+      "@app/utils/*": [
+        "libs/utils/src/*"
+      ],
+      "libraries/extends": [
+        "libs/extends/src"
+      ],
+      "libraries/extends/*": [
+        "libs/extends/src/*"
+      ],
+      "@app/middlewares": [
+        "libs/middlewares/src"
+      ],
+      "@app/middlewares/*": [
+        "libs/middlewares/src/*"
+      ],
+      "@app/modules": [
+        "libs/modules/src"
+      ],
+      "@app/modules/*": [
+        "libs/modules/src/*"
+      ],
+      "@app/database": [
+        "libs/database/src"
+      ],
+      "@app/database/*": [
+        "libs/database/src/*"
+      ]
+    }
+  }
+}
