@@ -93,7 +93,6 @@ export class AuthService {
 
   async refresh(userId: number, refreshToken: string) {
     const user = await this.usersService.findOne(userId, ['password']);
-    console.log('user', user);
     if (!user || !user.refreshToken || user.refreshToken !== refreshToken) {
       throw new ForbiddenException('Invalid refresh token');
     }
