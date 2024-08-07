@@ -9,3 +9,7 @@ export interface SignInResponse {
   accessToken: string;
   refreshToken: string;
 }
+
+export interface RefreshResponse {
+  accessToken: string;
+}

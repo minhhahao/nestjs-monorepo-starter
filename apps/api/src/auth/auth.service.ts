@@ -4,6 +4,7 @@ import { CreateUserDto } from '@app/modules/users/dto/create-user.dto';
 import { UsersService } from '@app/modules/users';
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -79,9 +80,8 @@ export class AuthService {
   }
 
   async updateRefreshToken(userId: number, refreshToken: string) {
-    const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
     return await this.usersService.update(userId, {
-      refreshToken: hashedRefreshToken,
+      refreshToken: refreshToken,
     });
   }
 
@@ -89,5 +89,36 @@ export class AuthService {
     return await this.usersService.update(userId, {
       refreshToken: null,
     });
+  }
+
+  async refresh(userId: number, refreshToken: string) {
+    const user = await this.usersService.findOne(userId, ['password']);
+    console.log('user', user);
+    if (!user || !user.refreshToken || user.refreshToken !== refreshToken) {
+      throw new ForbiddenException('Invalid refresh token');
+    }
+
+    // Check if expired refresh token
+    const { exp } = this.jwtService.decode(refreshToken) as any;
+    if (Date.now() >= exp * 1000) {
+      throw new ForbiddenException('Expired refresh token');
+    }
+
+    let newAccessTokenExpiresIn = '1h';
+    // If the remaining time of the refresh token is less than 1h, then the new access token will expire equal to the remaining time
+    if (exp * 1000 - Date.now() < 3600000) {
+      newAccessTokenExpiresIn = `${(exp * 1000 - Date.now()) / 1000}s`;
+    }
+
+    const newAccessToken = await this.jwtService.signAsync(
+      {
+        sub: userId,
+      },
+      {
+        expiresIn: newAccessTokenExpiresIn,
+        secret: process.env.JWT_SECRET,
+      },
+    );
+    return { accessToken: newAccessToken };
   }
 }

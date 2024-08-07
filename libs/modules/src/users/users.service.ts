@@ -20,8 +20,11 @@ export class UsersService {
     return this.prisma.user.findMany();
   }
 
-  async findOne(id: number) {
+  async findOne(id: number, fields: string[] = []) {
     const user = await this.prisma.user.findUnique({ where: { id } });
+    if (fields.length) {
+      return omit(user, fields);
+    }
     return omit(user, ['password', 'refreshToken']);
   }
 
