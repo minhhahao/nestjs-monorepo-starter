@@ -7,10 +7,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Nestjs Boilerplate Starter')
+    .setTitle('Nestjs Boilerplate Monorepo Starter')
     .setDescription('The Nestjs Boilerplate API description')
     .setVersion('1.0')
     .addTag('nestjs-boilerplate')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

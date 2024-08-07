@@ -1,0 +1,8 @@
+model CategoryToPost {
+  A Int
+  B Int
+
+  @@unique([A, B], map: "_CategoryToPost_AB_unique")
+  @@index([B], map: "_CategoryToPost_B_index")
+  @@map("_CategoryToPost")
+}

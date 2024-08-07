@@ -81,6 +81,24 @@
       "compilerOptions": {
         "tsConfigPath": "libs/config/tsconfig.lib.json"
       }
+    },
+    "auth": {
+      "type": "library",
+      "root": "libs/auth",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth/tsconfig.lib.json"
+      }
+    },
+    "guards": {
+      "type": "library",
+      "root": "libs/guards",
+      "entryFile": "index",
+      "sourceRoot": "libs/guards/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/guards/tsconfig.lib.json"
+      }
     }
   }
 }

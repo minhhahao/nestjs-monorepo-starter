@@ -59,6 +59,18 @@
       ],
       "@app/config/*": [
         "libs/config/src/*"
+      ],
+      "@app/auth": [
+        "libs/auth/src"
+      ],
+      "@app/auth/*": [
+        "libs/auth/src/*"
+      ],
+      "@app/guards": [
+        "libs/guards/src"
+      ],
+      "@app/guards/*": [
+        "libs/guards/src/*"
       ]
     }
   }

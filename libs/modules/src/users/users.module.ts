@@ -7,4 +7,4 @@ import { DatabaseModule } from '@app/database';
   exports: [UsersService],
   imports: [DatabaseModule],
 })
-export class UsersModule {}
+export class UsersModuleLib {}

@@ -4,3 +4,8 @@ export interface SignUpResponse {
   email: string;
   role: string;
 }
+
+export interface SignInResponse {
+  accessToken: string;
+  refreshToken: string;
+}
