@@ -8,11 +8,13 @@
   "scripts": {
     "build:api": "nest build api",
     "build:admin": "nest build admin",
+    "build:queues": "nest build queues",
     "start:dev:api": "nest start api --debug --watch",
     "start:dev:admin": "nest start admin --debug --watch",
     "start:dev:queues": "nest start queues --debug --watch",
     "start:prod:api": "node dist/apps/api/main",
     "start:prod:admin": "node dist/apps/admin/main",
+    "start:prod:queues": "node dist/apps/queues/main",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
