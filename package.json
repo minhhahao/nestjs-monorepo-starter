@@ -10,6 +10,7 @@
     "build:admin": "nest build admin",
     "start:dev:api": "nest start api --debug --watch",
     "start:dev:admin": "nest start admin --debug --watch",
+    "start:dev:queues": "nest start queues --debug --watch",
     "start:prod:api": "node dist/apps/api/main",
     "start:prod:admin": "node dist/apps/admin/main",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
@@ -21,6 +22,7 @@
     "test:e2e": "jest --config ./apps/api/test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/bull": "^10.2.0",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.2.0",
@@ -30,6 +32,7 @@
     "@nestjs/swagger": "^7.4.0",
     "@prisma/client": "5.17.0",
     "bcrypt": "^5.1.1",
+    "bull": "^4.16.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "express": "^4.19.2",

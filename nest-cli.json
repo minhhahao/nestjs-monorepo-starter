@@ -99,6 +99,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/guards/tsconfig.lib.json"
       }
+    },
+    "queues": {
+      "type": "application",
+      "root": "apps/queues",
+      "entryFile": "main",
+      "sourceRoot": "apps/queues/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/queues/tsconfig.app.json"
+      }
     }
   }
 }

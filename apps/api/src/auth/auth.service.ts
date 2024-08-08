@@ -10,15 +10,19 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { Queue } from 'bull';
 
 import { SignInDto } from './auth.dto';
 import { ROUNDOFHASH } from '@app/config/common';
+import { InjectQueue } from '@nestjs/bull';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+
+    @InjectQueue('send-mail') private sendMailQueue: Queue,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -33,6 +37,12 @@ export class AuthService {
     const hashPassword = await bcrypt.hash(createUserDto.password, ROUNDOFHASH);
     createUserDto.password = hashPassword;
     const user = await this.usersService.create(createUserDto);
+
+    // Send email welcome to user
+    await this.sendMailQueue.add('user-sign-up', {
+      email: user.email,
+      name: user.name,
+    });
     return omit(user, 'password');
   }
 

@@ -7,6 +7,7 @@ import { AuthController } from './auth.controller';
 import { UsersModuleLib } from '@app/modules/users/users.module';
 import { AccessTokenStrategy, RefreshTokenStrategy } from './strategies';
 import { GuardsModule } from '@app/guards';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
@@ -14,6 +15,9 @@ import { GuardsModule } from '@app/guards';
     JwtModule.register({}),
     UsersModuleLib,
     GuardsModule,
+    BullModule.registerQueue({
+      name: 'send-mail',
+    }),
   ],
   controllers: [AuthController],
   providers: [AuthService, AccessTokenStrategy, RefreshTokenStrategy],

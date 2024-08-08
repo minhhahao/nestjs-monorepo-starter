@@ -4,9 +4,19 @@ import { AppService } from './app.service';
 import { RequestIdMiddleware } from '@app/middlewares';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
-  imports: [AuthModule, UsersModule],
+  imports: [
+    AuthModule,
+    UsersModule,
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
