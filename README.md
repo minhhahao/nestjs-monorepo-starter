@@ -120,7 +120,7 @@ The detail of the each component can be found [here](https://docs.nestjs.com/fir
 
 ## Stay in touch
 
-* :email: Author - [minhhahao@gmail.com](mailto:minhhahao@gmail.com)
+* :email: Author - [minhhahao](https://github.com/minhhahao)
 
 ## License
 
