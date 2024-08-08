@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://sun-asterisk.vn/en/" target="blank"><img src="https://sun-asterisk.vn/wp-content/uploads/2020/10/logo@2x.png" width="320" alt="Nest Logo" /></a>
+  <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
 <h1 align="center">
@@ -8,6 +8,7 @@ The Nest.js Monorepo Boilerplate Starter
 <p align="center">
 <a href="https://nodejs.org/ko/blog/release/v20.16.0/" target="_blank"><img src="https://img.shields.io/badge/node-v20.16.0-blue.svg" alt="Node Version" /></a>
 <a href="https://github.com/pnpm/pnpm/releases/tag/v9.6.0" target="_blank"><img src="https://img.shields.io/badge/pnpm-v9.6.0-blue.svg" alt="PNPM Version" /></a>
+<a href="https://github.com/nestjs/nest/releases/tag/v10.3.0" target="_blank"><img src="https://img.shields.io/badge/nestjs-v10.3.0-blue.svg" alt="Nest.js Version" /></a>
 <a href="https://github.com/microsoft/TypeScript/releases/tag/v5.5.4" target="_blank"><img src="https://img.shields.io/badge/typescript-5.5.4-blue.svg" alt="Typescript Version" /></a>
 <a href="#" target="_blank"><img src="https://img.shields.io/badge/testing-passed-green.svg" alt="Testing" /></a>
 <a href="#" target="_blank"><img src="https://img.shields.io/badge/vulnerabilities-0-green.svg" alt="Vulnerabilities" /></a>
@@ -19,9 +20,9 @@ The Nest.js Monorepo Boilerplate Starter
   * [Introduction](#introduction)
   * [Architecture](#architecture)
 * **[Development](#)**
-  * [Installation within docker](docs/installation_within_docker.md).
-  * [Installation without docker](docs/installation_without_docker.md).
-  * [Usage](docs/usage_development.md).
+  * [Installation within docker](docs/DEVELOPMENT.md#installation-within-docker).
+  * [Installation without docker](docs/DEVELOPMENT.md#installation-without-docker).
+  * [Usage](docs/DEVELOPMENT.md#usage).
 * **[Deployment](#)**
   * [Build](docs/deployment_on_sun_server.md#cicd)
 * **[Integrations](#)**
