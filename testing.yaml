@@ -1,0 +1,23 @@
+version: '3'
+
+include:
+  - path:
+    - ./docker/database/database.yaml
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile.dev
+    container_name: boilerplate_testing_api
+    volumes:
+      - .:/code
+      - /code/node_modules
+    command: /bin/bash -c 'pnpm test'
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis

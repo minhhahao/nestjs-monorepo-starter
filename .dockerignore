@@ -1,0 +1,8 @@
+# Don't copy in existing node_modules, we'll fetch our own
+node_modules
+
+# Docs are large, we don't need them in our Docker image
+docs
+
+# Dist is built from source, we don't need it in our Docker image
+dist

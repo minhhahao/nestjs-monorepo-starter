@@ -1,0 +1,19 @@
+ARG NODE_VERSION=20.16
+
+# Create a new image from the official Node 20.16.0 image
+FROM node:${NODE_VERSION} as node
+
+# Nodejs build stage
+FROM node as build
+
+RUN apt-get update -y && apt-get install -y bash openssl
+
+RUN corepack enable pnpm
+
+# Set the working directory
+WORKDIR /code
+
+# Requirements are installed here to ensure they will be cached.
+COPY ./ ./
+RUN pnpm install
+RUN pnpm exec prisma generate

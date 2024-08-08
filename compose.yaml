@@ -1,0 +1,22 @@
+version: '3'
+
+include:
+  - path:
+    - ./docker/database/database.yaml
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    image: boilerplate_production_api
+    container_name: boilerplate_production_api
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
