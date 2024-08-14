@@ -1,0 +1,8 @@
+{
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "useNode20",
+        "command": "nvm use v20.16.0",
+        "type": "shell"
+    }]
+}
