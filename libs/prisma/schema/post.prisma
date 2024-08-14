@@ -4,6 +4,7 @@ model Post {
   updatedAt  DateTime   @updatedAt
   title      String
   published  Boolean    @default(false)
+  thumbnail  String?
   authorId   Int
   author     User       @relation(fields: [authorId], references: [id])
   categories Category[]
