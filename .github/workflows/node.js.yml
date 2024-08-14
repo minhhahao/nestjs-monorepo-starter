@@ -31,7 +31,9 @@ jobs:
       run: pnpm install
 
     - name: Code Testing
-      run: pnpm test
+      run: | 
+        pnpm exec prisma generate 
+        pnpm test
 
     - name: Test Build
       run: | 
