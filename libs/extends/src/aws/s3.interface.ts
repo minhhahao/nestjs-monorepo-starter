@@ -9,5 +9,5 @@ export interface File {
 export interface S3File {
   bucketName: string;
   key: string;
-  file: File;
+  file: Buffer;
 }
