@@ -1,10 +1,14 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { BullModule } from '@nestjs/bull';
+
+import { RequestIdMiddleware } from '@app/middlewares';
+import { ExtendsModule } from '@app/extends';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { RequestIdMiddleware } from '@app/middlewares';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { BullModule } from '@nestjs/bull';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -16,6 +20,8 @@ import { BullModule } from '@nestjs/bull';
         port: 6379,
       },
     }),
+    PostsModule,
+    ExtendsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

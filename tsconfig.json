@@ -30,10 +30,10 @@
       "@app/utils/*": [
         "libs/utils/src/*"
       ],
-      "libraries/extends": [
+      "@app/extends": [
         "libs/extends/src"
       ],
-      "libraries/extends/*": [
+      "@app/extends/*": [
         "libs/extends/src/*"
       ],
       "@app/middlewares": [

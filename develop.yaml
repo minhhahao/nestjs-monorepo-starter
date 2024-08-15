@@ -17,8 +17,28 @@ services:
     command: pnpm start:dev:api
     env_file:
       - .env
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_KEY=test
+      - AWS_REGION=us-east-1
+      - AWS_BUCKET_NAME=sample-bucket
+      - AWS_ENDPOINT=http://localstack:4566
     ports:
       - "3000:3000"
     depends_on:
       - postgres
       - redis
+      - localstack
+
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"

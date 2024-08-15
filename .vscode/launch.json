@@ -9,7 +9,6 @@
             "request": "launch",
             "name": "Launch API",
             "runtimeExecutable": "pnpm",
-            "preLaunchTask": "useNode20",
             "runtimeArgs": [
             "run",
             "start:dev:api",
@@ -25,10 +24,24 @@
             "request": "launch",
             "name": "Launch Queues",
             "runtimeExecutable": "pnpm",
-            "preLaunchTask": "useNode20",
             "runtimeArgs": [
             "run",
             "start:dev:queues",
+            ],
+            "autoAttachChildProcesses": true,
+            "restart": true,
+            "sourceMaps": true,
+            "stopOnEntry": false,
+            "console": "integratedTerminal",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Admin",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": [
+            "run",
+            "start:dev:admin",
             ],
             "autoAttachChildProcesses": true,
             "restart": true,
