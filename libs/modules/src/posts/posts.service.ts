@@ -7,6 +7,13 @@ export class PostsService {
   constructor(private prisma: DatabaseService) {}
 
   async create(createPostDto: CreatePostDto) {
+    const user = this.prisma.user.findUnique({
+      where: { id: createPostDto.authorId },
+    });
+    if (!user) {
+      throw new Error('Author not found');
+    }
+    createPostDto.authorId = Number(createPostDto.authorId);
     return await this.prisma.post.create({ data: createPostDto });
   }
 
@@ -14,7 +21,7 @@ export class PostsService {
     return await this.prisma.post.findMany();
   }
 
-  async retrieve(id: number) {
+  async findOne(id: number) {
     return this.prisma.post.findUnique({ where: { id } });
   }
 

@@ -13,7 +13,7 @@ describe('PostsController', () => {
         {
           provide: PostsService,
           useValue: {
-            retrieve: jest.fn(),
+            findOne: jest.fn(),
           },
         },
       ],
@@ -27,13 +27,13 @@ describe('PostsController', () => {
     // Arrange
     const id = '1';
     const expectedPost = { id: 1, title: 'Test Post' };
-    jest.spyOn(postsService, 'retrieve').mockResolvedValue(expectedPost as any);
+    jest.spyOn(postsService, 'findOne').mockResolvedValue(expectedPost as any);
 
     // Act
-    const result = await postsController.retrieve(id);
+    const result = await postsController.findOne(id);
 
     // Assert
-    expect(postsService.retrieve).toHaveBeenCalledWith(1);
+    expect(postsService.findOne).toHaveBeenCalledWith(1);
     expect(result).toEqual(expectedPost);
   });
 
@@ -42,10 +42,10 @@ describe('PostsController', () => {
     const id = 'abc';
 
     // Act
-    const result = await postsController.retrieve(id);
+    const result = await postsController.findOne(id);
 
     // Assert
-    expect(postsService.retrieve).toHaveBeenCalledWith(NaN);
+    expect(postsService.findOne).toHaveBeenCalledWith(NaN);
     expect(result).toBeUndefined();
   });
 
@@ -53,19 +53,19 @@ describe('PostsController', () => {
     // Arrange
     const id = '1';
     jest
-      .spyOn(postsService, 'retrieve')
+      .spyOn(postsService, 'findOne')
       .mockRejectedValue(new Error('Service Error'));
 
     // Act
     let error;
     try {
-      await postsController.retrieve(id);
+      await postsController.findOne(id);
     } catch (e) {
       error = e;
     }
 
     // Assert
-    expect(postsService.retrieve).toHaveBeenCalledWith(1);
+    expect(postsService.findOne).toHaveBeenCalledWith(1);
     expect(error).toBeInstanceOf(Error);
     expect(error.message).toBe('Service Error');
   });

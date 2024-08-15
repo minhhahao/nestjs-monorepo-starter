@@ -7,27 +7,50 @@ import {
   Param,
   Delete,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiConsumes } from '@nestjs/swagger';
+
 import { CreatePostDto, UpdatePostDto } from '@app/modules/posts/dto';
 import { PostsService } from '@app/modules/posts';
 import { AccessTokenGuard } from '@app/guards';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { getFileName } from '@app/utils/string';
 
+@ApiBearerAuth()
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
   @UseGuards(AccessTokenGuard)
-  async create(@Body() createPostDto: CreatePostDto) {
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(
+    FileInterceptor('thumbnail', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: async (_, file, callback) => {
+          const filename = await getFileName(file);
+          callback(null, filename);
+        },
+      }),
+    }),
+  )
+  async create(
+    @Body() createPostDto: CreatePostDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    createPostDto.thumbnail = file.filename;
     return await this.postsService.create(createPostDto);
   }
 
-  @Post()
   @UseGuards(AccessTokenGuard)
   @Get(':id')
-  async retrieve(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     const numericId = isNaN(Number(id)) ? NaN : Number(id);
-    return await this.postsService.retrieve(numericId);
+    return await this.postsService.findOne(numericId);
   }
 
   @UseGuards(AccessTokenGuard)

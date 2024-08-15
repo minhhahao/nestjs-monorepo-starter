@@ -43,6 +43,7 @@
     "express": "^4.19.2",
     "hyperid": "^3.2.0",
     "lodash": "^4.17.21",
+    "multer": "1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "prisma": "^5.17.0",
@@ -57,6 +58,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
+    "@types/multer": "^1.4.11",
     "@types/node": "^20.3.1",
     "@types/passport-jwt": "^4.0.1",
     "@types/supertest": "^6.0.0",
@@ -98,13 +100,13 @@
     "moduleNameMapper": {
       "^@app/nestjs-modules(|/.*)$": "<rootDir>/libs/nestjs-modules/src/$1",
       "^@app/utils(|/.*)$": "<rootDir>/libs/utils/src/$1",
-      "^libraries/extends(|/.*)$": "<rootDir>/libs/extends/src/$1",
       "^@app/middlewares(|/.*)$": "<rootDir>/libs/middlewares/src/$1",
       "^@app/modules(|/.*)$": "<rootDir>/libs/modules/src/$1",
       "^@app/database(|/.*)$": "<rootDir>/libs/database/src/$1",
       "^@app/config(|/.*)$": "<rootDir>/libs/config/src/$1",
       "^@app/auth(|/.*)$": "<rootDir>/libs/auth/src/$1",
-      "^@app/guards(|/.*)$": "<rootDir>/libs/guards/src/$1"
+      "^@app/guards(|/.*)$": "<rootDir>/libs/guards/src/$1",
+      "^@app/extends(|/.*)$": "<rootDir>/libs/extends/src/$1"
     }
   },
   "prisma": {

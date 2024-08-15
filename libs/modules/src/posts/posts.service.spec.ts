@@ -40,7 +40,7 @@ describe('PostsService', () => {
     prisma.post.findUnique = jest.fn().mockResolvedValue(mockPost);
 
     // Act
-    const result = await service.retrieve(1);
+    const result = await service.findOne(1);
 
     // Assert
     expect(prisma.post.findUnique).toHaveBeenCalledWith({ where: { id: 1 } });
@@ -52,7 +52,7 @@ describe('PostsService', () => {
     prisma.post.findUnique = jest.fn().mockResolvedValue(null);
 
     // Act
-    const result = await service.retrieve(999);
+    const result = await service.findOne(999);
 
     // Assert
     expect(prisma.post.findUnique).toHaveBeenCalledWith({ where: { id: 999 } });
@@ -68,7 +68,7 @@ describe('PostsService', () => {
     // Act
     let error;
     try {
-      await service.retrieve(1);
+      await service.findOne(1);
     } catch (e) {
       error = e;
     }

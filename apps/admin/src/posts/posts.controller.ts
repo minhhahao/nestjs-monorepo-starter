@@ -24,7 +24,7 @@ export class PostsController {
 
   @Get(':id')
   async retrieve(@Param('id') id: string) {
-    return await this.postsService.retrieve(+id);
+    return await this.postsService.findOne(+id);
   }
 
   @Patch(':id')
