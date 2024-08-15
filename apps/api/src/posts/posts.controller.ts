@@ -7,12 +7,10 @@ import {
   Param,
   Delete,
   UseGuards,
-  UseInterceptors,
 } from '@nestjs/common';
 import { CreatePostDto, UpdatePostDto } from '@app/modules/posts/dto';
 import { PostsService } from '@app/modules/posts';
 import { AccessTokenGuard } from '@app/guards';
-import { FileInterceptor } from '@nestjs/platform-express/multer';
 
 @Controller('posts')
 export class PostsController {
@@ -20,14 +18,16 @@ export class PostsController {
 
   @Post()
   @UseGuards(AccessTokenGuard)
-  @UseInterceptors(FileInterceptor('file'))
   async create(@Body() createPostDto: CreatePostDto) {
     return await this.postsService.create(createPostDto);
   }
 
+  @Post()
+  @UseGuards(AccessTokenGuard)
   @Get(':id')
   async retrieve(@Param('id') id: string) {
-    return await this.postsService.retrieve(+id);
+    const numericId = isNaN(Number(id)) ? NaN : Number(id);
+    return await this.postsService.retrieve(numericId);
   }
 
   @UseGuards(AccessTokenGuard)
