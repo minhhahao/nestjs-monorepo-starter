@@ -18,6 +18,7 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
   }
 
   validate(payload: JwtPayload) {
+    // Todo: Add validation logic RBAC or ACL at here
     return payload;
   }
 }
